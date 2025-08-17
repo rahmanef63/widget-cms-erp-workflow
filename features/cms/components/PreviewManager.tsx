@@ -5,7 +5,7 @@ import type { CompNodeData } from "@/shared/types/schema"
 import { PreviewWidget } from "./PreviewWidget"
 import { Button } from "@/components/ui/button"
 import { Plus, Grid3X3 } from "lucide-react"
-import { cn } from "@/lib/utils"
+import { cn } from "@/shared/lib/utils"
 
 interface PreviewInstance {
   id: string
