@@ -81,7 +81,7 @@ export function UnifiedJsonDialog({
           {mode === "export" ? (
             <Button onClick={handleSubmit}>Copy to Clipboard</Button>
           ) : (
-            <Button onClick={handleSubmit} disabled={!value.trim()}>
+            <Button onClick={handleSubmit} disabled={!value?.trim()}>
               {mode === "import" ? "Import" : "Add Widget"}
             </Button>
           )}
