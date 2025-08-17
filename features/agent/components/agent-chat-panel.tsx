@@ -29,7 +29,7 @@ import {
   StopCircle,
   Code,
 } from "lucide-react"
-import { toast } from "@/hooks/use-toast"
+import { toast } from "@/shared/hooks/use-toast"
 
 // Loading skeleton component
 function MessageSkeleton() {
