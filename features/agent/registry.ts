@@ -151,21 +151,26 @@ export type OverrideConfig = { modelName?: string; apiKey?: string }
 
 export function getModelFromId(id: ModelId) {
   const info = MODEL_REGISTRY.find((m) => m.id === id) || MODEL_REGISTRY[0]
-  switch (info.provider) {
-    case "xai":
-      return xai(info.model)
-    case "groq":
-      return groq(info.model)
-    case "deepinfra":
-      return deepinfra(info.model)
-    case "openai":
-      return openai(info.model)
-    case "anthropic":
-      return anthropic(info.model)
-    case "google":
-      return google(info.model)
-    default:
-      return xai(XAI_MODELS.default)
+  try {
+    switch (info.provider) {
+      case "xai":
+        return xai ? xai(info.model) : null
+      case "groq":
+        return groq ? groq(info.model) : null
+      case "deepinfra":
+        return deepinfra ? deepinfra(info.model) : null
+      case "openai":
+        return openai ? openai(info.model) : null
+      case "anthropic":
+        return anthropic ? anthropic(info.model) : null
+      case "google":
+        return google ? google(info.model) : null
+      default:
+        return xai ? xai(XAI_MODELS.default) : null
+    }
+  } catch (error) {
+    console.warn(`Failed to create model ${id}:`, error)
+    return null
   }
 }
 
