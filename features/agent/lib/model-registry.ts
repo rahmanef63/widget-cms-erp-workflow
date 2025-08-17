@@ -18,12 +18,12 @@ let aiProviders: {
   createGoogleGenerativeAI?: any
 } = {}
 
-import { XAI_MODELS, type XaiIds } from "./models/xai"
-import { GROQ_MODELS, type GroqIds } from "./models/groq"
-import { DEEPINFRA_MODELS, type DeepInfraIds } from "./models/deepinfra"
-import { OPENAI_MODELS, type OpenAIIds } from "./models/openai"
-import { ANTHROPIC_MODELS, type AnthropicIds } from "./models/anthropic"
-import { GOOGLE_MODELS, type GoogleIds } from "./models/google"
+import { XAI_MODELS, type XaiIds } from "../models/xai"
+import { GROQ_MODELS, type GroqIds } from "../models/groq"
+import { DEEPINFRA_MODELS, type DeepInfraIds } from "../models/deepinfra"
+import { OPENAI_MODELS, type OpenAIIds } from "../models/openai"
+import { ANTHROPIC_MODELS, type AnthropicIds } from "../models/anthropic"
+import { GOOGLE_MODELS, type GoogleIds } from "../models/google"
 
 export type ModelId = XaiIds | GroqIds | DeepInfraIds | OpenAIIds | AnthropicIds | GoogleIds
 
@@ -144,7 +144,7 @@ export function getModelFromId(id: ModelId) {
   }
 }
 
-// Dynamic override: if apiKey/modelName provided, create a provider instance with that apiKey. [^1]
+// Dynamic override: if apiKey/modelName provided, create a provider instance with that apiKey.
 export function getModelFromIdWithOverride(id: ModelId, override?: OverrideConfig) {
   const info = MODEL_REGISTRY.find((m) => m.id === id) || MODEL_REGISTRY[0]
   const modelName = override?.modelName || info.model
