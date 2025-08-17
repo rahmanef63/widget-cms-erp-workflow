@@ -124,19 +124,19 @@ export function getModelFromId(id: ModelId) {
   try {
     switch (info.provider) {
       case "xai":
-        return xai ? xai(info.model) : null
+        return aiProviders.xai ? aiProviders.xai(info.model) : null
       case "groq":
-        return groq ? groq(info.model) : null
+        return aiProviders.groq ? aiProviders.groq(info.model) : null
       case "deepinfra":
-        return deepinfra ? deepinfra(info.model) : null
+        return aiProviders.deepinfra ? aiProviders.deepinfra(info.model) : null
       case "openai":
-        return openai ? openai(info.model) : null
+        return aiProviders.openai ? aiProviders.openai(info.model) : null
       case "anthropic":
-        return anthropic ? anthropic(info.model) : null
+        return aiProviders.anthropic ? aiProviders.anthropic(info.model) : null
       case "google":
-        return google ? google(info.model) : null
+        return aiProviders.google ? aiProviders.google(info.model) : null
       default:
-        return xai ? xai(XAI_MODELS.default) : null
+        return aiProviders.xai ? aiProviders.xai(XAI_MODELS.default) : null
     }
   } catch (error) {
     console.warn(`Failed to create model ${id}:`, error)
@@ -153,19 +153,19 @@ export function getModelFromIdWithOverride(id: ModelId, override?: OverrideConfi
   try {
     switch (info.provider) {
       case "xai":
-        return key && createXai ? createXai({ apiKey: key })(modelName) : xai ? xai(modelName) : null
+        return key && aiProviders.createXai ? aiProviders.createXai({ apiKey: key })(modelName) : aiProviders.xai ? aiProviders.xai(modelName) : null
       case "groq":
-        return key && createGroq ? createGroq({ apiKey: key })(modelName) : groq ? groq(modelName) : null
+        return key && aiProviders.createGroq ? aiProviders.createGroq({ apiKey: key })(modelName) : aiProviders.groq ? aiProviders.groq(modelName) : null
       case "deepinfra":
-        return key && createDeepInfra ? createDeepInfra({ apiKey: key })(modelName) : deepinfra ? deepinfra(modelName) : null
+        return key && aiProviders.createDeepInfra ? aiProviders.createDeepInfra({ apiKey: key })(modelName) : aiProviders.deepinfra ? aiProviders.deepinfra(modelName) : null
       case "openai":
-        return key && createOpenAI ? createOpenAI({ apiKey: key })(modelName) : openai ? openai(modelName) : null
+        return key && aiProviders.createOpenAI ? aiProviders.createOpenAI({ apiKey: key })(modelName) : aiProviders.openai ? aiProviders.openai(modelName) : null
       case "anthropic":
-        return key && createAnthropic ? createAnthropic({ apiKey: key })(modelName) : anthropic ? anthropic(modelName) : null
+        return key && aiProviders.createAnthropic ? aiProviders.createAnthropic({ apiKey: key })(modelName) : aiProviders.anthropic ? aiProviders.anthropic(modelName) : null
       case "google":
-        return key && createGoogleGenerativeAI ? createGoogleGenerativeAI({ apiKey: key })(modelName) : google ? google(modelName) : null
+        return key && aiProviders.createGoogleGenerativeAI ? aiProviders.createGoogleGenerativeAI({ apiKey: key })(modelName) : aiProviders.google ? aiProviders.google(modelName) : null
       default:
-        return xai ? xai(modelName) : null
+        return aiProviders.xai ? aiProviders.xai(modelName) : null
     }
   } catch (error) {
     console.warn(`Failed to create model ${id} with override:`, error)
@@ -180,19 +180,19 @@ export function isModelAvailable(id: ModelId) {
   // Check if the AI SDK package is available
   const packageAvailable = (() => {
     switch (info.provider) {
-      case "xai": return Boolean(xai)
-      case "groq": return Boolean(groq)
-      case "deepinfra": return Boolean(deepinfra)
-      case "openai": return Boolean(openai)
-      case "anthropic": return Boolean(anthropic)
-      case "google": return Boolean(google)
+      case "xai": return Boolean(aiProviders.xai)
+      case "groq": return Boolean(aiProviders.groq)
+      case "deepinfra": return Boolean(aiProviders.deepinfra)
+      case "openai": return Boolean(aiProviders.openai)
+      case "anthropic": return Boolean(aiProviders.anthropic)
+      case "google": return Boolean(aiProviders.google)
       default: return false
     }
   })()
 
-  if (!packageAvailable) return false
-  if (typeof process === "undefined" || !process.env) return true
-  return Boolean(process.env[info.envVar as keyof NodeJS.ProcessEnv])
+  // For now, return true to show models in the UI even if packages aren't installed
+  // This allows users to see what models are available and configure them
+  return true
 }
 
 export function listModels() {
