@@ -41,3 +41,26 @@ export const CMS_FOLLOWUP_DEFAULT = `
 17) Preferensi lokalisasi (mata uang, zona waktu, format tanggal)?
 18) Metrik keberhasilan utama yang ingin dipantau?
 `.trim()
+
+// Additional system prompts for general agent interaction
+export const AGENT_INTERACTION_PROMPTS = {
+  greeting: "Hello! I'm your AI assistant. I can help you build and modify your CMS components. What would you like to create today?",
+  
+  errorHandling: [
+    "I encountered an error processing your request. Please try again with more specific details.",
+    "The model is currently unavailable. I'll use a fallback approach to help you.",
+    "I couldn't understand that request. Could you rephrase it or provide more context?"
+  ],
+  
+  successConfirmation: [
+    "Schema generated and applied successfully!",
+    "Your request has been processed and the canvas has been updated.",
+    "Configuration saved successfully."
+  ],
+  
+  interviewMode: [
+    "Let me ask you a few questions to better understand your needs.",
+    "Thank you for the information. Type 'generate' to create your page.",
+    "Interview completed. You can now provide additional details or generate your page."
+  ]
+}

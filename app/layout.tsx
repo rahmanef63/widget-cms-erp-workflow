@@ -1,7 +1,7 @@
 import type React from "react"
 import { SidebarProvider } from "@/components/ui/sidebar"
-import { AppSidebar } from "@/components/app-sidebar"
-import "./globals.css"
+import { AppSidebar } from "@/components/app/app-sidebar"
+import "../styles/globals.css"
 
 export default function RootLayout({
   children,
