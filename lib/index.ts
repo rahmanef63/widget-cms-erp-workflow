@@ -1,9 +1,2 @@
-// Main utility exports
-export * from "./utils"
-export * from "./validation"
-export * from "./storage"
-export * from "./api-client"
-export * from "./error-handling"
-
-// Monaco editor utilities
-export * from "./monaco-environment"
+// Re-export from shared lib for backward compatibility
+export * from "@/shared/lib"
