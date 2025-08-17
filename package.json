@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "@ai-sdk/anthropic": "^1.0.2",
-    "@ai-sdk/deepinfra": "^0.0.24",
+    "@ai-sdk/deepinfra": "^1.0.7",
     "@ai-sdk/google": "^1.0.2",
     "@ai-sdk/groq": "^1.0.2",
     "@ai-sdk/openai": "^1.0.2",
