@@ -2,7 +2,7 @@
 
 import React from "react"
 import type { Edge, Node } from "reactflow"
-import { cn } from "@/lib/utils"
+import { cn } from "@/shared/lib/utils"
 import RenderPage from "@/features/page-generator/pages/RenderPage"
 
 type ComponentType =
