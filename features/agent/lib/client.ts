@@ -14,7 +14,7 @@ export function authHeaders(settings: ChatSettings, modelId: string): HeadersIni
 }
 
 export async function fetchModels(): Promise<ModelOption[]> {
-  let timeoutId: NodeJS.Timeout | undefined
+  let timeoutId: number | undefined
 
   try {
     const controller = new AbortController()
