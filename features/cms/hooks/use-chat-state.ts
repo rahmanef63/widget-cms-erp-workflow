@@ -5,7 +5,7 @@ import { loadChatSettings, saveChatSettings, getAgentConfig, setAgentConfig } fr
 import { fetchModels } from "@/features/agent/lib/client"
 import type { ChatMsg, Attachment, ModelOption } from "@/features/agent/types"
 import type { CMSSchema } from "@/shared/types/schema"
-import { toast } from "@/hooks/use-toast"
+import { toast } from "@/shared/hooks/use-toast"
 
 export function useChatState() {
   // Chat state

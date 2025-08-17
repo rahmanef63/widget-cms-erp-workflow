@@ -1,7 +1,7 @@
 "use client"
 import { Handle, Position } from "reactflow"
 import type { CompNodeData } from "@/shared/types/schema"
-import { cn } from "@/lib/utils"
+import { cn } from "@/shared/lib/utils"
 import { typeBadge } from "@/features/cms/widgets/core/utils"
 import { Badge } from "@/components/ui/badge"
 

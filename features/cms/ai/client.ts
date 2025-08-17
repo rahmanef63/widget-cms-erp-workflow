@@ -1,6 +1,6 @@
 "use client"
 
-import { toast } from "@/hooks/use-toast"
+import { toast } from "@/shared/hooks/use-toast"
 import type { CMSSchema } from "@/shared/types/schema"
 import type { ChatSettings } from "@/shared/settings/chat"
 

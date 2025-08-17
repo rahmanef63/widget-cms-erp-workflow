@@ -1,6 +1,6 @@
 "use client"
 
-import { useToast } from "@/hooks/use-toast"
+import { useToast } from "@/shared/hooks/use-toast"
 import {generateComponentCode , generateStandaloneHTML, download} from "@/features/cms/widgets/core/exporters"
 
 export class ExportHandlers {

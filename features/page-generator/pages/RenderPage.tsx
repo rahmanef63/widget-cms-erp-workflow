@@ -1,7 +1,7 @@
 "use client"
 
 import { useMemo } from "react"
-import { useSilenceResizeObserver } from "@/hooks/use-silence-resize-observer"
+import { useSilenceResizeObserver } from "@/shared/hooks/use-silence-resize-observer"
 import type { Edge, Node } from "reactflow"
 import type { CompNodeData } from "@/shared/types/schema"
 import { SchemaRenderer } from "@/features/page-generator/components/SchemaRenderer"

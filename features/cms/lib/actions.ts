@@ -1,4 +1,4 @@
-import { toast } from "@/hooks/use-toast"
+import { toast } from "@/shared/hooks/use-toast"
 import { validateCanvas, logCanvasState } from "./canvas-validator"
 import { LOG_PREFIXES } from "../components/toolbar/constants"
 import type { ToolbarAction, ComponentType } from "../types/toolbar-types"

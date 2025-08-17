@@ -1,4 +1,4 @@
-import { toast } from "@/hooks/use-toast"
+import { toast } from "@/shared/hooks/use-toast"
 import { generateSchemaFromPrompt, retryPreferTool, generateVariant } from "@/features/cms/ai/client"
 import { sendChatMessage, fetchFollowups } from "@/features/agent/lib/client"
 import { clientFallbackHeuristic, tryParseSchemaJson } from "@/features/cms/ai/utils"

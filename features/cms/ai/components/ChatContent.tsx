@@ -12,7 +12,7 @@ import { Card, CardContent } from "@/components/ui/card"
 import { Switch } from "@/components/ui/switch"
 import { Label } from "@/components/ui/label"
 import { Loader2, Send, Settings, Paperclip, Bot, User, Copy, Code, Component, Layers } from "lucide-react"
-import { toast } from "@/hooks/use-toast"
+import { toast } from "@/shared/hooks/use-toast"
 import { useCMSChatState } from "../hooks/useCMSChatState"
 import { CMSAgentUtils } from "../utils"
 

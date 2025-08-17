@@ -6,7 +6,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader } from "@/components/ui/card"
 import { X, Maximize2, Minimize2, RefreshCw } from "lucide-react"
-import { cn } from "@/lib/utils"
+import { cn } from "@/shared/lib/utils"
 
 const DEVICE_PRESETS = [
   { key: "desktop", label: "Desktop", w: 1920, h: 1080 },
