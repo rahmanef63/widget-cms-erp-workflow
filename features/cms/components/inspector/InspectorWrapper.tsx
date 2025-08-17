@@ -1,7 +1,7 @@
 "use client"
 
 import { Button } from "@/components/ui/button"
-import { cn } from "@/lib/utils"
+import { cn } from "@/shared/lib/utils"
 import type { Node } from "reactflow"
 import type { CompNodeData } from "@/shared/types/schema"
 import { Inspector } from "./Inspector"
