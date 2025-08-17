@@ -20,7 +20,7 @@ const FALLBACK_MODELS = [
 export async function GET() {
   try {
     // Try to load the registry dynamically, fall back to static list if it fails
-    const { listModels } = await import("@/features/agent/registry")
+    const { listModels } = await import("@/features/agent/lib/model-registry")
     const models = listModels()
     return NextResponse.json({ models, source: "dynamic" })
   } catch (error) {
