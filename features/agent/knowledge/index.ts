@@ -9,8 +9,8 @@ export { default as CommonQuestions } from "./base/common-questions.md"
 // Main knowledge export for agent system
 export const AGENT_KNOWLEDGE = {
   // CMS-specific knowledge
-  cmsBase: () => import("./cms-base-knowledge").then(m => m.CMS_BASE_KNOWLEDGE),
-  faqExamples: () => import("./faq-examples").then(m => m.CMS_FAQ_EXAMPLES),
+  cmsBase: () => import("./propmpts/base-knowledge").then(m => m.CMS_BASE_KNOWLEDGE),
+  faqExamples: () => import("./propmpts/faq-examples").then(m => m.CMS_FAQ_EXAMPLES),
   
   // System prompts
   systemPrompts: () => import("./system-prompts").then(m => ({
@@ -23,9 +23,9 @@ export const AGENT_KNOWLEDGE = {
   
   // Documentation
   docs: {
-    corePrinciples: () => import("./core-principles.md"),
-    bestPractices: () => import("./best-practices.md"),
-    commonQuestions: () => import("./common-questions.md")
+    corePrinciples: () => import("./base/core-principles.md"),
+    bestPractices: () => import("./base/best-practices.md"),
+    commonQuestions: () => import("./base/common-questions.md")
   }
 }
 
