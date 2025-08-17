@@ -58,7 +58,7 @@ export async function handleAIGenerate(req: Request) {
 
     if (!toolResults || toolResults.length === 0) {
       console.warn("[/api/ai] No tool results received, using fallback")
-      const schema = fallbackHeuristic(prompt)
+      const schema = generateFallbackSchema(prompt)
       return NextResponse.json({ source: "fallback", schema })
     }
 
@@ -67,7 +67,7 @@ export async function handleAIGenerate(req: Request) {
 
     if (!toolResult || typeof toolResult !== "object") {
       console.warn("[/api/ai] Invalid tool result format, using fallback")
-      const schema = fallbackHeuristic(prompt)
+      const schema = generateFallbackSchema(prompt)
       return NextResponse.json({ source: "fallback", schema })
     }
 
@@ -77,7 +77,7 @@ export async function handleAIGenerate(req: Request) {
         error: parsed.error?.toString?.() || String(parsed.error || "unknown"),
         toolResult: JSON.stringify(toolResult, null, 2),
       })
-      const schema = fallbackHeuristic(prompt)
+      const schema = generateFallbackSchema(prompt)
       return NextResponse.json({ source: "fallback", schema })
     }
 
