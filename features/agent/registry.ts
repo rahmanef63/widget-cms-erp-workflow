@@ -180,21 +180,26 @@ export function getModelFromIdWithOverride(id: ModelId, override?: OverrideConfi
   const modelName = override?.modelName || info.model
   const key = override?.apiKey
 
-  switch (info.provider) {
-    case "xai":
-      return key ? createXai({ apiKey: key })(modelName) : xai(modelName)
-    case "groq":
-      return key ? createGroq({ apiKey: key })(modelName) : groq(modelName)
-    case "deepinfra":
-      return key ? createDeepInfra({ apiKey: key })(modelName) : deepinfra(modelName)
-    case "openai":
-      return key ? createOpenAI({ apiKey: key })(modelName) : openai(modelName)
-    case "anthropic":
-      return key ? createAnthropic({ apiKey: key })(modelName) : anthropic(modelName)
-    case "google":
-      return key ? createGoogleGenerativeAI({ apiKey: key })(modelName) : google(modelName)
-    default:
-      return xai(modelName)
+  try {
+    switch (info.provider) {
+      case "xai":
+        return key && createXai ? createXai({ apiKey: key })(modelName) : xai ? xai(modelName) : null
+      case "groq":
+        return key && createGroq ? createGroq({ apiKey: key })(modelName) : groq ? groq(modelName) : null
+      case "deepinfra":
+        return key && createDeepInfra ? createDeepInfra({ apiKey: key })(modelName) : deepinfra ? deepinfra(modelName) : null
+      case "openai":
+        return key && createOpenAI ? createOpenAI({ apiKey: key })(modelName) : openai ? openai(modelName) : null
+      case "anthropic":
+        return key && createAnthropic ? createAnthropic({ apiKey: key })(modelName) : anthropic ? anthropic(modelName) : null
+      case "google":
+        return key && createGoogleGenerativeAI ? createGoogleGenerativeAI({ apiKey: key })(modelName) : google ? google(modelName) : null
+      default:
+        return xai ? xai(modelName) : null
+    }
+  } catch (error) {
+    console.warn(`Failed to create model ${id} with override:`, error)
+    return null
   }
 }
 
