@@ -1,5 +1,5 @@
 "use client"
-import { cn } from "@/lib/utils"
+import { cn } from "@/shared/lib/utils"
 import { TooltipProvider } from "@/components/ui/tooltip"
 import { Separator } from "@/components/ui/separator"
 
