@@ -1,8 +1,8 @@
 import { NextResponse } from "next/server"
 import type { ModelId } from "@/features/agent/lib/model-registry"
 import { runAgent } from "@/features/agent/lib/agent-runner"
-import { CMS_BASE_KNOWLEDGE } from "@/features/agent/knowledge/cms-base-knowledge"
-import { CMS_FAQ_EXAMPLES } from "@/features/agent/knowledge/faq-examples"
+import { CMS_BASE_KNOWLEDGE } from "@/features/cms/ai/knowledge/cms-base-knowledge"
+import { CMS_FAQ_EXAMPLES } from "@/features/agent/knowledge/prompts/faq-examples"
 
 export const dynamic = "force-dynamic"
 
