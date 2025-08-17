@@ -66,8 +66,8 @@ export default function CMSPage() {
 
   // Tools API for agent integration
   const toolsApi: ToolsApi = useMemo(() => ({
-    createSchema: aiChatHandlers.handleCreateSchema.bind(aiChatHandlers),
-    followup: aiChatHandlers.handleFollowup.bind(aiChatHandlers),
+    createSchema: aiChatHandlers.sendChat.bind(aiChatHandlers),
+    followup: aiChatHandlers.askFollowups.bind(aiChatHandlers),
   }), [aiChatHandlers])
 
   // Menu groups for navigation
