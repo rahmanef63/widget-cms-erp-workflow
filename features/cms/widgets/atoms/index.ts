@@ -1,0 +1,6 @@
+export { spanWidget } from "./span/config"
+export { divWidget } from "./div/config"
+export { paragraphWidget } from "./paragraph/config"
+export { linkWidget } from "./link/config"
+export { imgWidget } from "./image/config"
+export { labelWidget } from "./label/config"
