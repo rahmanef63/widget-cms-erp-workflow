@@ -1,11 +1,16 @@
-// Export the new unified widget architecture
+// Export the unified widget architecture
+
+// Core widget system
 export * from './core'
+
+// Widget definitions and schemas
 export * from './definitions'
+
+// Widget renderers
 export * from './renderers'
+
+// Property inspector components
 export * from './inspector'
 
-// Export shared utilities
+// Shared utilities and components
 export * from './shared'
-
-// Legacy exports for backward compatibility
-export * from '../widgets'
