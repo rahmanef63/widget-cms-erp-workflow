@@ -2,7 +2,7 @@
 
 import React from "react"
 import type { Node } from "reactflow"
-import { cn } from "@/lib/utils"
+import { cn } from "@/shared/lib/utils"
 import { safeParseStyle } from "./utils"
 import type { CompNodeData } from "@/shared/types/schema"
 import { BUTTON_SIZE_MAP } from "./meta"
