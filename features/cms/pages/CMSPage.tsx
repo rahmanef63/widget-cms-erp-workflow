@@ -5,7 +5,7 @@ import {AIChatSheet} from "@/features/cms/components/chat/AIChatSheet" // Import
 
 import { useToast, useSilenceResizeObserver, useChunkReloadOnFailure } from "@/shared/hooks"
 
-import { PRESET_PROMPTS } from "@/features/agent/constants/ui"
+import { PRESET_PROMPTS } from "@/features/cms/ai/constants"
 import { useRightRectangleSelect } from "@/features/cms/hooks/use-right-rectangle-select"
 
 import { CMSDialogs } from "../components/shared/dialog/cms-dialogs"
