@@ -91,10 +91,10 @@ export default function CMSPage() {
         // CMS State
         nodes={cmsState.nodes}
         edges={cmsState.edges}
-        selectedNodeIds={cmsState.selectedNodeIds}
+        selectedNodeIds={cmsState.selectedNodeId ? [cmsState.selectedNodeId] : []}
         onNodesChange={cmsState.onNodesChange}
         onEdgesChange={cmsState.onEdgesChange}
-        onSelectionChange={cmsState.setSelectedNodeIds}
+        onSelectionChange={(ids) => cmsState.setSelectedNodeId(ids[0] || null)}
         
         // Layout State
         showAIChat={layoutState.showAIChat}
@@ -117,7 +117,7 @@ export default function CMSPage() {
       >
         {/* Inspector Panel */}
         <InspectorWrapper
-          selectedNodeIds={cmsState.selectedNodeIds}
+          selectedNodeIds={cmsState.selectedNodeId ? [cmsState.selectedNodeId] : []}
           nodes={cmsState.nodes}
           onUpdateNode={cmsState.updateNodeData}
         />
