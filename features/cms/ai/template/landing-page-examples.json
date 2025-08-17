@@ -1,0 +1,45 @@
+{
+  "basicLanding": {
+    "name": "Basic Landing Page",
+    "description": "Simple landing page with hero, features, and CTA",
+    "schema": {
+      "widgets": [
+        {
+          "id": "hero-1",
+          "type": "text",
+          "props": {
+            "tag": "h1",
+            "content": "Welcome to Our Service",
+            "className": "text-4xl font-bold text-center"
+          }
+        },
+        {
+          "id": "cta-1",
+          "type": "button",
+          "props": {
+            "label": "Get Started",
+            "variant": "default",
+            "size": "lg"
+          }
+        }
+      ]
+    }
+  },
+  "businessProfile": {
+    "name": "Business Profile",
+    "description": "Professional business profile with about section",
+    "schema": {
+      "widgets": [
+        {
+          "id": "about-1",
+          "type": "text",
+          "props": {
+            "tag": "h2",
+            "content": "About Our Company",
+            "className": "text-2xl font-semibold"
+          }
+        }
+      ]
+    }
+  }
+}
