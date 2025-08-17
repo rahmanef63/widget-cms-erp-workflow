@@ -206,6 +206,21 @@ export function getModelFromIdWithOverride(id: ModelId, override?: OverrideConfi
 export function isModelAvailable(id: ModelId) {
   const info = MODEL_REGISTRY.find((m) => m.id === id)
   if (!info) return false
+
+  // Check if the AI SDK package is available
+  const packageAvailable = (() => {
+    switch (info.provider) {
+      case "xai": return Boolean(xai)
+      case "groq": return Boolean(groq)
+      case "deepinfra": return Boolean(deepinfra)
+      case "openai": return Boolean(openai)
+      case "anthropic": return Boolean(anthropic)
+      case "google": return Boolean(google)
+      default: return false
+    }
+  })()
+
+  if (!packageAvailable) return false
   if (typeof process === "undefined" || !process.env) return true
   return Boolean(process.env[info.envVar as keyof NodeJS.ProcessEnv])
 }
