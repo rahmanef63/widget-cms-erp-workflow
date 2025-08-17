@@ -1,9 +1,52 @@
-import { xai, createXai } from "@ai-sdk/xai"
-import { groq, createGroq } from "@ai-sdk/groq"
-import { deepinfra, createDeepInfra } from "@ai-sdk/deepinfra"
-import { openai, createOpenAI } from "@ai-sdk/openai"
-import { anthropic, createAnthropic } from "@ai-sdk/anthropic"
-import { google, createGoogleGenerativeAI } from "@ai-sdk/google"
+// Fallback imports with error handling for missing packages
+let xai: any, createXai: any
+let groq: any, createGroq: any
+let deepinfra: any, createDeepInfra: any
+let openai: any, createOpenAI: any
+let anthropic: any, createAnthropic: any
+let google: any, createGoogleGenerativeAI: any
+
+try {
+  ({ xai, createXai } = require("@ai-sdk/xai"))
+} catch (e) {
+  console.warn("@ai-sdk/xai not available")
+  xai = createXai = () => null
+}
+
+try {
+  ({ groq, createGroq } = require("@ai-sdk/groq"))
+} catch (e) {
+  console.warn("@ai-sdk/groq not available")
+  groq = createGroq = () => null
+}
+
+try {
+  ({ deepinfra, createDeepInfra } = require("@ai-sdk/deepinfra"))
+} catch (e) {
+  console.warn("@ai-sdk/deepinfra not available")
+  deepinfra = createDeepInfra = () => null
+}
+
+try {
+  ({ openai, createOpenAI } = require("@ai-sdk/openai"))
+} catch (e) {
+  console.warn("@ai-sdk/openai not available")
+  openai = createOpenAI = () => null
+}
+
+try {
+  ({ anthropic, createAnthropic } = require("@ai-sdk/anthropic"))
+} catch (e) {
+  console.warn("@ai-sdk/anthropic not available")
+  anthropic = createAnthropic = () => null
+}
+
+try {
+  ({ google, createGoogleGenerativeAI } = require("@ai-sdk/google"))
+} catch (e) {
+  console.warn("@ai-sdk/google not available")
+  google = createGoogleGenerativeAI = () => null
+}
 
 import { XAI_MODELS, type XaiIds } from "./models/xai"
 import { GROQ_MODELS, type GroqIds } from "./models/groq"
