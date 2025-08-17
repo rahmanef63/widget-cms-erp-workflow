@@ -1,13 +1,6 @@
-// Export all shared hooks
-export { useLocalStorage } from "./use-local-storage"
-export { useDebounce } from "./use-debounce"
-export { useAsync } from "./use-async"
-export { useEventListener } from "./use-event-listener"
-export { usePrevious } from "./use-previous"
-export { useToggle } from "./use-toggle"
-export { useClipboard } from "./use-clipboard"
-export { useMediaQuery } from "./use-media-query"
+// Re-export from shared hooks for backward compatibility
+export * from "@/shared/hooks"
 
-// Re-export existing hooks
-export { useMobile } from "./use-mobile"
-export { useToast } from "./use-toast"
+// Legacy hook names for backward compatibility
+import { useToast as sharedUseToast } from "@/shared/hooks"
+export { sharedUseToast as useToast }
