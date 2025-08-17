@@ -1,10 +1,8 @@
-// Export all shared utilities and types
-export * from "./types"
+// Re-export everything from shared modules
 export * from "./constants"
+export * from "./hooks"
+export * from "./lib"
+export * from "./types/schema"
 export * from "./utils"
-
-// DND utilities
-export * from "./dnd"
-
-// Settings
-export * from "./settings"
+export * from "./settings/chat"
+export * from "./dnd/types"
