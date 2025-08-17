@@ -6,4 +6,4 @@ export { TextPropertyInspector } from './text-property-inspector'
 // export { CardPropertyInspector } from './card-property-inspector'
 
 // Export existing inspector functionality
-export * from '../../../cms/components/inspector'
+export * from '../../components/inspector'
