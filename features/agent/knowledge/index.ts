@@ -10,6 +10,3 @@ export * from './base/common-questions.md'
 export * from './prompts/base-knowledge'
 export * from './prompts/system-prompts'
 export * from './prompts/faq-examples'
-
-// Re-export CMS-specific knowledge that will be moved
-export * from './cms-base-knowledge'
