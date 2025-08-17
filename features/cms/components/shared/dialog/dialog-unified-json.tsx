@@ -65,7 +65,7 @@ export function UnifiedJsonDialog({
         <ScrollArea className="max-h-[56vh] pr-2">
           <div className="space-y-2">
           <Textarea
-            value={value}
+            value={value || ""}
             onChange={(e) => onChange(e.target.value)}
             placeholder={readonly ? "" : "Paste JSON here..."}
             className="min-h-[300px] font-mono text-sm"
@@ -81,7 +81,7 @@ export function UnifiedJsonDialog({
           {mode === "export" ? (
             <Button onClick={handleSubmit}>Copy to Clipboard</Button>
           ) : (
-            <Button onClick={handleSubmit} disabled={!value.trim()}>
+            <Button onClick={handleSubmit} disabled={!value?.trim()}>
               {mode === "import" ? "Import" : "Add Widget"}
             </Button>
           )}
