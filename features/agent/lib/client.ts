@@ -14,9 +14,14 @@ export function authHeaders(settings: ChatSettings, modelId: string): HeadersIni
 }
 
 export async function fetchModels(): Promise<ModelOption[]> {
+  let timeoutId: NodeJS.Timeout | undefined
+
   try {
     const controller = new AbortController()
-    const timeoutId = setTimeout(() => controller.abort(), 10000) // 10 second timeout
+    timeoutId = setTimeout(() => {
+      console.warn("⚠️ [CLIENT] Models fetch timeout, aborting...")
+      controller.abort()
+    }, 5000) // Reduced to 5 second timeout
 
     const res = await fetch("/api/ai/models", {
       signal: controller.signal,
@@ -24,8 +29,6 @@ export async function fetchModels(): Promise<ModelOption[]> {
         "Cache-Control": "no-cache",
       },
     })
-
-    clearTimeout(timeoutId)
 
     if (!res.ok) {
       throw new Error(`Failed to fetch models: ${res.status} ${res.statusText}`)
@@ -41,8 +44,26 @@ export async function fetchModels(): Promise<ModelOption[]> {
     console.log("✅ [CLIENT] Models fetched successfully:", models.length)
     return models
   } catch (error) {
-    console.warn("⚠️ [CLIENT] Failed to fetch models, using fallback:", error)
-    return [{ id: "xai:grok-3", label: "Grok-3 (default)", available: true }]
+    if (error instanceof Error) {
+      if (error.name === 'AbortError') {
+        console.warn("⚠️ [CLIENT] Models fetch was aborted due to timeout")
+      } else {
+        console.warn("⚠️ [CLIENT] Failed to fetch models:", error.message)
+      }
+    } else {
+      console.warn("⚠️ [CLIENT] Failed to fetch models with unknown error:", error)
+    }
+
+    // Return a comprehensive fallback list
+    return [
+      { id: "xai:grok-3", label: "Grok-3 (default)", available: true },
+      { id: "openai:gpt-4o", label: "GPT-4o (OpenAI)", available: false },
+      { id: "anthropic:claude-3-5-sonnet", label: "Claude 3.5 Sonnet", available: false },
+    ]
+  } finally {
+    if (timeoutId) {
+      clearTimeout(timeoutId)
+    }
   }
 }
 
