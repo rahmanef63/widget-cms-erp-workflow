@@ -4,5 +4,7 @@ export { RenderProvider, useRenderProfile, useRenderProfileControls, type Render
 // Export unified components
 export { UnifiedText } from './unified-text'
 
-// Export existing core functionality
-export * from '../../../cms/widgets/core'
+// Export core utilities
+export * from './utils'
+export * from './exporters'
+export * from './constants'
