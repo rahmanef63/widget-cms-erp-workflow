@@ -1,9 +1,8 @@
-export * from "./interfaces/base-widget"
-export * from "./validation/widget-validator"
-export * from "./validation/schema-registry"
-export * from "./validation/validation-errors"
+// Export render context and providers
+export { RenderProvider, useRenderProfile, useRenderProfileControls, type RenderProfile } from './render-context'
 
-// Re-export commonly used types and classes
-export { WidgetValidator, BaseWidgetSchema } from "./validation/widget-validator"
-export { SchemaRegistry } from "./validation/schema-registry"
-export { WidgetValidationError, ValidationUtils } from "./validation/validation-errors"
+// Export unified components
+export { UnifiedText } from './unified-text'
+
+// Export existing core functionality
+export * from '../../../cms/widgets/core'
