@@ -7,7 +7,7 @@ export * from "./types"
 export * from "./tools"
 
 // Component exports
-export { AgentChatPanel } from "./components/AgentChatPanel"
+export { AgentChatPanel } from "./components/agent-chat-panel"
 
 // Legacy compatibility
 export { runAgent } from "./lib/agent-runner"
