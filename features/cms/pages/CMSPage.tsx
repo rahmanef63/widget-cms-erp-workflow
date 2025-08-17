@@ -1,7 +1,7 @@
 "use client"
 import { useCallback, useEffect, useMemo } from "react"
 import type React from "react"
-import {AIChatSheet} from "@/features/cms/ai/components/AIChatSheet" // Import AIChatSheet component
+import {AIChatSheet} from "@/features/cms/components/chat/AIChatSheet" // Import AIChatSheet component
 
 import { useToast } from "@/hooks/use-toast"
 import { useSilenceResizeObserver } from "@/hooks/use-silence-resize-observer"
