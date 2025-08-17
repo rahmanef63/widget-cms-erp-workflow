@@ -1,5 +1,5 @@
 import { handleFollowup } from "@/features/agent/server/followup"
-import { CMS_FOLLOWUP_DEFAULT, CMS_FOLLOWUP_SYSTEM } from "@/features/agent/knowledge"
+//import { CMS_FOLLOWUP_DEFAULT, CMS_FOLLOWUP_SYSTEM } from "@/features/agent/knowledge"
 
 const FALLBACK = `
 1) Apa nama brand dan deskripsi singkat bisnis Anda?

@@ -2,7 +2,6 @@
 export * from "./lib/agent-runner"
 export * from "./lib/model-registry" 
 export * from "./lib/fallback-generator"
-export * from "./knowledge"
 export * from "./types"
 export * from "./tools"
 
