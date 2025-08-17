@@ -78,7 +78,7 @@ The new architecture eliminates widget overlap by separating semantic meaning fr
 
 #### Unified TextNode Schema
 
-```typescript
+\`\`\`typescript
 export interface TextNode {
   id: string;
   type: 'text';
@@ -93,11 +93,11 @@ export interface TextNode {
   items?: string[];              // list items
   tone?: 'default'|'muted'|'lead'|'large'|'small';  // presentation hint
 }
-```
+\`\`\`
 
 #### Render Profile System
 
-```typescript
+\`\`\`typescript
 export type RenderProfile = 'semantic' | 'shadcn';
 
 // Usage in preview
@@ -108,11 +108,11 @@ export type RenderProfile = 'semantic' | 'shadcn';
 <RendererProvider profile="shadcn">    {/* For marketing/UI pages */}
   <PageRenderer />
 </RendererProvider>
-```
+\`\`\`
 
 #### Dual Renderer Architecture
 
-```typescript
+\`\`\`typescript
 // Unified Text component with profile-based rendering
 export function Text({ node }: { node: TextNode }) {
   const profile = useRenderProfile();
@@ -120,7 +120,7 @@ export function Text({ node }: { node: TextNode }) {
     ? <SemanticText node={node}/>
     : <ShadcnText node={node}/>;
 }
-```
+\`\`\`
 
 #### Property Inspector Separation
 
@@ -132,17 +132,17 @@ export function Text({ node }: { node: TextNode }) {
 ### Import/Export Strategy (DRY & Dynamic)
 
 #### Multi-Format Import
-```typescript
+\`\`\`typescript
 // Import by widget ID (JSON reference)
 const widget = importFromJson({ widgetId: "text-123" });
 
 // Import from HTML directly
 const widget = importFromHtml('<h1>My Title</h1>');
 // Results in: { type: 'text', role: 'heading', level: 1, content: 'My Title' }
-```
+\`\`\`
 
 #### Multi-Format Export
-```typescript
+\`\`\`typescript
 // Export to semantic HTML
 const semanticHtml = exportToHtml(textNode, 'semantic');
 // Output: <h1>My Title</h1>
@@ -154,24 +154,24 @@ const styledHtml = exportToHtml(textNode, 'shadcn');
 // Export to JSON and TypeScript
 const json = exportToJson(textNode);
 const ts = exportToTypeScript(textNode);
-```
+\`\`\`
 
 #### Automatic Property Inspector Inheritance
 
 **ShadCN components automatically inherit properties from their semantic HTML base:**
-```typescript
+\`\`\`typescript
 // Button inherits semantic button properties + adds presentation properties
 const buttonProperties = {
   semantic: ['type', 'disabled', 'form', 'name'],  // HTML button attributes
   presentation: ['variant', 'size', 'tone'],       // ShadCN styling
   content: ['text', 'icon']                        // Content properties
 };
-```
+\`\`\`
 
 #### Modular Error Handling
 
 **Widget Isolation Strategy:**
-```typescript
+\`\`\`typescript
 // Each widget is independent - errors don't cascade
 try {
   renderWidget(widget);
@@ -179,7 +179,7 @@ try {
   isolateWidget(widget.id, error);
   renderFallback(widget.id); // Fallback content
 }
-```
+\`\`\`
 
 ---
 
@@ -190,7 +190,7 @@ try {
 The Widget Builder Pattern provides a fluent API for creating widgets with proper validation and type safety.
 
 #### Base Widget Interface
-```typescript
+\`\`\`typescript
 interface BaseWidget {
   id: string
   type: string
@@ -199,10 +199,10 @@ interface BaseWidget {
   children?: BaseWidget[]
   metadata?: WidgetMetadata
 }
-```
+\`\`\`
 
 #### Widget Builder Class
-```typescript
+\`\`\`typescript
 class WidgetBuilder<T extends BaseWidget> {
   private widget: Partial<T>
   
@@ -221,12 +221,12 @@ class WidgetBuilder<T extends BaseWidget> {
   validate(): ValidationResult
   build(): T
 }
-```
+\`\`\`
 
 #### Usage Examples
 
 **Enhanced Widget Builder with Unified Architecture:**
-```typescript
+\`\`\`typescript
 const heading = new WidgetBuilder('text')
   .addProp('role', 'heading')
   .addProp('level', 1)
@@ -234,10 +234,10 @@ const heading = new WidgetBuilder('text')
   .addProp('tone', 'default')  // presentation hint
   .validate()
   .build()
-```
+\`\`\`
 
 **Complex Hero Section:**
-```typescript
+\`\`\`typescript
 const heroSection = new WidgetBuilder('hero-section')
   .addChild(
     new WidgetBuilder('container')
@@ -252,7 +252,7 @@ const heroSection = new WidgetBuilder('hero-section')
       .build()
   )
   .build()
-```
+\`\`\`
 
 ---
 
@@ -262,7 +262,7 @@ const heroSection = new WidgetBuilder('hero-section')
 Comprehensive validation system using Zod schemas for runtime type safety and property validation.
 
 #### Base Widget Schema
-```typescript
+\`\`\`typescript
 const BaseWidgetSchema = z.object({
   id: z.string().uuid(),
   type: z.string().min(1),
@@ -275,11 +275,11 @@ const BaseWidgetSchema = z.object({
     author: z.string().optional()
   }).optional()
 })
-```
+\`\`\`
 
 #### Enhanced Validation with Unified Architecture
 
-```typescript
+\`\`\`typescript
 const TextNodeSchema = BaseWidgetSchema.extend({
   type: z.literal('text'),
   role: z.enum(['heading', 'paragraph', 'blockquote', 'list', 'table', 'inlineCode']),
@@ -293,10 +293,10 @@ const TextNodeSchema = BaseWidgetSchema.extend({
   }
   return true;
 });
-```
+\`\`\`
 
 #### Widget Validator
-```typescript
+\`\`\`typescript
 export class WidgetValidator {
   static validate<T extends BaseWidget>(
     widget: unknown, 
@@ -316,7 +316,7 @@ export class WidgetValidator {
     }
   }
 }
-```
+\`\`\`
 
 ---
 
@@ -325,7 +325,7 @@ export class WidgetValidator {
 ### Version Management
 
 #### Widget Version Schema
-```typescript
+\`\`\`typescript
 interface WidgetVersion {
   version: string
   schema: z.ZodSchema
@@ -333,22 +333,22 @@ interface WidgetVersion {
   deprecated?: boolean
   deprecationDate?: Date
 }
-```
+\`\`\`
 
 #### Migration Interface
-```typescript
+\`\`\`typescript
 interface Migration {
   fromVersion: string
   toVersion: string
   migrate: (oldWidget: any) => any
   rollback?: (newWidget: any) => any
 }
-```
+\`\`\`
 
 ### Migration Registry
 
 #### Automatic Migration
-```typescript
+\`\`\`typescript
 export class WidgetMigrator {
   static migrate(widget: any, targetVersion?: string): BaseWidget {
     const registry = WidgetVersionRegistry.getInstance()
@@ -364,7 +364,7 @@ export class WidgetMigrator {
     return migrations.reduce((w, migration) => migration.migrate(w), widget)
   }
 }
-```
+\`\`\`
 
 ---
 
@@ -372,7 +372,7 @@ export class WidgetMigrator {
 
 ### Proposed New Structure
 
-```
+\`\`\`
 ├── README.md
 ├── docs/
 │   └── SYSTEM_DESIGN.md         // [MERGED] Single comprehensive document
@@ -439,7 +439,7 @@ export class WidgetMigrator {
 ├── next.config.mjs
 ├── package.json
 └── tsconfig.json
-```
+\`\`\`
 
 ### Key Changes Made
 
@@ -467,7 +467,7 @@ export class WidgetMigrator {
 The property inspector system provides reusable, composable property editors that can be combined for complex widgets.
 
 #### Modular Inspector System
-```typescript
+\`\`\`typescript
 // Composite widget example: Form with input + button
 const formInspectors = [
   'shadcn/input',     // Input field properties
@@ -477,11 +477,11 @@ const formInspectors = [
 
 // System automatically combines all relevant property inspectors
 <CompositePropertyInspector inspectors={formInspectors} />
-```
+\`\`\`
 
 #### Enhanced Property Inspector with Profile Separation
 
-```typescript
+\`\`\`typescript
 interface PropertyInspectorProps {
   node: TextNode;
   profile: RenderProfile;
@@ -506,7 +506,7 @@ export function TextPropertyInspector({ node, profile, onChange }: PropertyInspe
     </div>
   );
 }
-```
+\`\`\`
 
 ### DRY Principle Implementation
 - Each widget exports reusable property definitions
@@ -672,17 +672,17 @@ export function TextPropertyInspector({ node, profile, onChange }: PropertyInspe
 ## Widget Architecture Comparison
 
 ### Before: Overlapping Widgets
-```
+\`\`\`
 atoms/heading     → <h1>, <h2>, <h3>...
 shadcn/typography → TypographyH1, TypographyH2, TypographyH3...
-```
+\`\`\`
 **Problems**: Duplication, confusion, maintenance overhead
 
 ### After: Unified Architecture
-```
+\`\`\`
 text (role: heading, level: 1) → SemanticText → <h1>
 text (role: heading, level: 1) → ShadcnText   → <h1 className="...">
-```
+\`\`\`
 **Benefits**: Single source of truth, dual rendering, no overlap, automatic property inheritance
 
 ---

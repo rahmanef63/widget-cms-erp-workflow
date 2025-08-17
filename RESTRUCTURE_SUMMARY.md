@@ -26,7 +26,7 @@
 
 ## 📁 Final Structure
 
-```
+\`\`\`
 ├── docs/
 │   └── SYSTEM_DESIGN.md         // ✅ [CONSOLIDATED] All documentation
 ├── app/
@@ -53,7 +53,7 @@
 │   └── types/                   // Shared types
 └── styles/
     └── globals.css              // ✅ [MOVED] Global styles
-```
+\`\`\`
 
 ## 🔧 Technical Achievements
 

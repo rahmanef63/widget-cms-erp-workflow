@@ -7,14 +7,14 @@ This guide explains how to migrate from the old widget system to the new unified
 ## Key Changes
 
 ### Before: Overlapping Widgets
-```typescript
+\`\`\`typescript
 // OLD: Duplicate widgets for same content
 const headingWidget = { type: 'atoms/heading', level: 1, content: 'Title' }
 const typographyWidget = { type: 'shadcn/typography', variant: 'h1', content: 'Title' }
-```
+\`\`\`
 
 ### After: Unified Architecture
-```typescript
+\`\`\`typescript
 // NEW: Single widget with dual rendering
 const textWidget = { 
   type: 'text', 
@@ -26,14 +26,14 @@ const textWidget = {
 
 // Renders as <h1>Title</h1> in semantic profile
 // Renders as <h1 className="...">Title</h1> in shadcn profile
-```
+\`\`\`
 
 ## Migration Steps
 
 ### 1. Update Widget Definitions
 
 #### Old Format
-```typescript
+\`\`\`typescript
 export const headingWidget = {
   type: "heading",
   label: "Heading",
@@ -44,10 +44,10 @@ export const headingWidget = {
     { key: "level", label: "Level", type: "select", options: [1,2,3,4,5,6] }
   ]
 }
-```
+\`\`\`
 
 #### New Format
-```typescript
+\`\`\`typescript
 export const textWidgetDefinition = {
   type: 'text',
   name: 'Text',
@@ -81,12 +81,12 @@ export const textWidgetDefinition = {
     }
   }
 }
-```
+\`\`\`
 
 ### 2. Update Renderers
 
 #### Old Approach
-```typescript
+\`\`\`typescript
 // Separate components for same content
 function HeadingWidget({ props }) {
   return <h1>{props.content}</h1>
@@ -95,10 +95,10 @@ function HeadingWidget({ props }) {
 function TypographyWidget({ props }) {
   return <h1 className="text-4xl font-bold">{props.content}</h1>
 }
-```
+\`\`\`
 
 #### New Approach
-```typescript
+\`\`\`typescript
 // Single component with profile-based rendering
 function UnifiedText({ node }) {
   const profile = useRenderProfile()
@@ -107,12 +107,12 @@ function UnifiedText({ node }) {
     ? <SemanticText node={node} />
     : <ShadcnText node={node} />
 }
-```
+\`\`\`
 
 ### 3. Update Property Inspectors
 
 #### Old Approach
-```typescript
+\`\`\`typescript
 // Separate property panels for each widget
 function HeadingPropertyPanel({ widget, onChange }) {
   return (
@@ -122,10 +122,10 @@ function HeadingPropertyPanel({ widget, onChange }) {
     </div>
   )
 }
-```
+\`\`\`
 
 #### New Approach
-```typescript
+\`\`\`typescript
 // Profile-aware property inspector with tabs
 function TextPropertyInspector({ node, onChange }) {
   const profile = useRenderProfile()
@@ -157,13 +157,13 @@ function TextPropertyInspector({ node, onChange }) {
     </Tabs>
   )
 }
-```
+\`\`\`
 
 ### 4. Add Render Provider
 
 Wrap your preview/editor with the render provider:
 
-```typescript
+\`\`\`typescript
 // In your CMS page/component
 function CMSEditor() {
   const [profile, setProfile] = useState<RenderProfile>('semantic')
@@ -178,12 +178,12 @@ function CMSEditor() {
     </RenderProvider>
   )
 }
-```
+\`\`\`
 
 ## Data Migration
 
 ### Automatic Migration
-```typescript
+\`\`\`typescript
 // Migrate old heading widgets to new text widgets
 function migrateHeadingWidget(oldWidget: any): TextNode {
   return {
@@ -211,20 +211,20 @@ function migrateTypographyWidget(oldWidget: any): TextNode {
     tone: oldWidget.props.tone || 'default'
   }
 }
-```
+\`\`\`
 
 ## Widget Registry Updates
 
 ### Old Registry
-```typescript
+\`\`\`typescript
 const WIDGET_REGISTRY = {
   'atoms/heading': HeadingWidget,
   'shadcn/typography': TypographyWidget,
 }
-```
+\`\`\`
 
 ### New Registry
-```typescript
+\`\`\`typescript
 const UNIFIED_WIDGET_REGISTRY = {
   'text': {
     definition: textWidgetDefinition,
@@ -232,7 +232,7 @@ const UNIFIED_WIDGET_REGISTRY = {
     inspector: TextPropertyInspector
   }
 }
-```
+\`\`\`
 
 ## Benefits of Migration
 
@@ -256,14 +256,14 @@ const UNIFIED_WIDGET_REGISTRY = {
 
 If issues arise, the old widget system remains available:
 
-```typescript
+\`\`\`typescript
 // Temporary: Use both systems during transition
 const isUnifiedArchitectureEnabled = process.env.ENABLE_UNIFIED_WIDGETS === 'true'
 
 const widgetComponent = isUnifiedArchitectureEnabled 
   ? UNIFIED_WIDGET_REGISTRY[widget.type]?.component
   : LEGACY_WIDGET_REGISTRY[widget.type]
-```
+\`\`\`
 
 ## Next Steps
 
